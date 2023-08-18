@@ -12,7 +12,6 @@ app.use(express.json()); //
 const whitelist = ["http://127.0.0.1:5500", "https://myapp.co"];
 const options = {
   origin: (origin, callback) => {
-    console.log("This is the origen: " + origin);
     if(whitelist.includes(origin) || !origin){
       callback(null, true);
     } else{
@@ -22,11 +21,11 @@ const options = {
 }
 app.use(cors(options));
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Hello, this is my server with express.');
 });
 
-app.get('/new-route', (req, res) => {
+app.get('/api/new-route', (req, res) => {
   res.send('Hello, this is a new route or also knew as and end point.');
 });
 
